@@ -2,7 +2,7 @@
 var c = document.getElementById("mainCanvas");
 var ctx = c.getContext("2d");
 //Set the number of particles that should be spawned
-var numParticles = 10000;
+var numParticles = 30000;
 
 /*Create particle array and push anonymous particle objects
   on to the array*/
@@ -18,7 +18,14 @@ for (var i = 0; i < numParticles; i++){
 }
 
 //loop that repeatedly calls draw()
-window.setInterval(draw, (1000 / 60));
+var recursiveAnimation = function() {
+    
+    draw();
+    window.requestAnimationFrame(recursiveAnimation);
+
+}
+
+window.requestAnimationFrame(recursiveAnimation);
 
 function draw(){
     
